@@ -1,0 +1,37 @@
+import os
+
+from dotenv import load_dotenv
+from fastapi import FastAPI
+from google.adk.cli.fast_api import get_fast_api_app
+
+
+
+
+
+
+# Load environment variables from .env file
+load_dotenv()
+print("📁 .env path loaded:", load_dotenv())
+print("🔑 Loaded GOOGLE_API_KEY:", os.getenv("GOOGLE_API_KEY"))
+# print("🔑 Loaded GOOGLE_API_KEY:", os.getenv("GOOGLE_API_KEY"))
+# print("Using .env file from:", path)
+
+AGENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Prepare arguments for get_fast_api_app
+app_args = {"agents_dir": AGENT_DIR, "web": True}
+
+# Create FastAPI app with appropriate arguments
+app: FastAPI = get_fast_api_app(**app_args)
+
+app.title = "chat-agent"
+app.description = "API for interacting with the Agent chat-agent"
+
+
+# Main execution
+if __name__ == "__main__":
+    import uvicorn  # noqa: F401
+
+    # uvicorn.run(app, host="0.0.0.0", port=8000 ,log_level="warning")
+    uvicorn.run(app, host="0.0.0.0", port=8080, log_level="warning")
+

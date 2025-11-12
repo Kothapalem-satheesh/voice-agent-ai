@@ -1,0 +1,172 @@
+@import "tailwindcss"; @import "tw-animate-css";
+
+/* ========== GLOBAL COLORS ========== */
+:root {
+  --bg-dark: #0b0b15;
+  --glass-dark: rgba(25, 25, 35, 0.85);
+  --glass-light: rgba(255, 255, 255, 0.05);
+  --text-light: #f8fafc;
+  --text-dim: #cbd5e1;
+  --accent-indigo: #6366f1;
+  --accent-pink: #ec4899;
+  --accent-green: #22c55e;
+  --accent-orange: #f97316;
+  --border-glass: rgba(255, 255, 255, 0.1);
+}
+
+/* ========== BASE STYLES ========== */
+@layer base {
+  * {
+    @apply box-border outline-none;
+  }
+
+  html,
+  body {
+    @apply w-full h-full overflow-hidden font-sans;
+    background: var(--bg-dark);
+    color: var(--text-light);
+  }
+
+  ::selection {
+    background: var(--accent-indigo);
+    color: white;
+  }
+}
+
+/* ========== BACKGROUND AMBIENCE ========== */
+.ambient {
+  background: radial-gradient(circle at 80% 0%, rgba(99,102,241,0.3), transparent 70%),
+    radial-gradient(circle at 20% 100%, rgba(236,72,153,0.25), transparent 70%);
+  animation: ambientShift 16s ease-in-out infinite alternate;
+}
+@keyframes ambientShift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -50px 30px;
+  }
+}
+
+/* ========== CHAT CARDS ========== */
+.glass-card {
+  background: var(--glass-dark);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+.glass-card:hover {
+  box-shadow: 0 0 25px rgba(99,102,241,0.2), 0 0 40px rgba(236,72,153,0.15);
+}
+
+/* ========== CHAT BUBBLES ========== */
+.message-bubble {
+  @apply max-w-[80%] p-3 rounded-2xl text-sm shadow-lg break-words leading-relaxed;
+}
+.bubble-user {
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-pink));
+  color: white;
+}
+.bubble-bot {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(8px);
+  color: var(--text-dim);
+}
+
+/* ========== BUTTONS (NEON STYLE) ========== */
+.btn {
+  @apply inline-flex items-center justify-center rounded-full px-5 py-2 font-semibold transition-all duration-300;
+  color: white;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-indigo), var(--accent-pink));
+  box-shadow: 0 0 18px rgba(99,102,241,0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(236,72,153,0.6);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--accent-green), #10b981);
+  box-shadow: 0 0 15px rgba(16,185,129,0.4);
+}
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(34,197,94,0.6);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--accent-orange), #ef4444);
+  box-shadow: 0 0 15px rgba(239,68,68,0.5);
+}
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(239,68,68,0.6);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  @apply border border-white/20 text-white;
+}
+
+/* ========== HEADER ========== */
+.header-glass {
+  background: rgba(25, 25, 35, 0.9);
+  border-bottom: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== FOOTER ========== */
+.footer-glass {
+  background: rgba(25, 25, 35, 0.9);
+  border-top: 1px solid var(--border-glass);
+  backdrop-filter: blur(10px);
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+/* ========== SCROLLBAR ========== */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--accent-pink), var(--accent-indigo));
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ========== GRADIENT TEXT ========== */
+.gradient-text {
+  background: linear-gradient(to right, var(--accent-indigo), var(--accent-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(-20px) translateX(15px);
+  }
+}
+
+.animate-float-slow {
+  animation: float 10s ease-in-out infinite alternate;
+}
+
+.animate-float-slower {
+  animation: float 14s ease-in-out infinite alternate;
+}
